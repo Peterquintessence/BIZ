@@ -59,3 +59,75 @@
         transform: rotate(-2deg) scale(1.1);
     }
 }
+
+//vanilla styles
+
+// Hamburger Icon Styles
+.hamburger {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    z-index: 999;
+    cursor: pointer; // Indicate clickable
+
+    > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 30px;
+        height: 2px;
+        background-color: $white;
+        transform: translate(-50%, -50%);
+        transition: transform 250ms linear;
+
+        &:before,
+        &:after {
+            position: absolute;
+            content: '';
+            width: 30px;
+            height: 2px;
+            background-color: $white;
+            transition: transform 250ms linear;
+        }
+
+        &:before {
+            transform: translateY(-8px);
+        }
+
+        &:after {
+            transform: translateY(8px);
+        }
+    }
+}
+
+// Toggle Logic with Checkbox
+#menu:checked ~ .navbar-collapse {
+    display: block;
+    transition: height 150ms linear;
+}
+
+#menu:checked ~ .hamburger > div {
+    visibility: hidden;
+
+    &:before,
+    &:after {
+        visibility: visible;
+        transform-origin: center center;
+        transform: translateY(0);
+    }
+
+    &:before {
+        transform: rotate(-45deg); // Rotate top line
+    }
+
+    &:after {
+        transform: rotate(45deg); // Rotate bottom line
+    }
+}
+
+// Adjust Body Padding for Fixed Navbar
+body {
+    padding-top: 63px; // Adjust according to your navbar height
+}
